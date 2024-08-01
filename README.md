@@ -17,7 +17,7 @@ Nequi
 ## Configuración
 1. Debes de tener una cuenta activa en la pasarela de pagos Wompi Colombia
 2. Accede a tu cuenta Wompi en [https://comercios.wompi.co/home](https://comercios.wompi.co/home)
-3. Ingresa a la seccion de "Desarroladores"
+3. Ingresa a la seccion de "Desarrolladores"
 4. En la opcion "URL de Eventos" ingresar la siguiente URL `https://tusitio.com?wc-api=WC_Wompi_PSE` y presiona el boton "Guardar"
 5. Copia las llaves publica y privada, y los secretos de Eventos e Integridad.
 6. Navega a la sección de ajustes de WooCommerce.
