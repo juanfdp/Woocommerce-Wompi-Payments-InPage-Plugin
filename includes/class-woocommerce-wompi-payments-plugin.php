@@ -96,9 +96,9 @@ class Woocommerce_Wompi_Payments_Plugin
 
         add_filter( 'woocommerce_payment_gateways', array($this, 'woocommerce_wompi_payments_add_gateway'));
         add_filter( 'woocommerce_checkout_fields', array($this, 'custom_woocommerce_checkout_fields'));
-        add_action( 'woocommerce_after_checkout_validation', 'validate_custom_checkout_fields', 10 , 2);
-        add_action( 'woocommerce_checkout_update_user_meta', 'update_user_meta', 10, 2 );
-        add_action( 'woocommerce_checkout_update_order_meta', 'save_custom_fields_in_order', 10);
+        add_action( 'woocommerce_after_checkout_validation', array($this, 'validate_custom_checkout_fields'), 10 , 2);
+        add_action( 'woocommerce_checkout_update_user_meta', array($this, 'update_user_meta'), 10, 2 );
+        add_action( 'woocommerce_checkout_update_order_meta', array($this, 'save_custom_fields_in_order'), 10, 1);
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_action( 'wp_head', array( $this, 'enqueue_head_scripts' ) );
         
