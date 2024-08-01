@@ -31,6 +31,3 @@ Nequi
 
 ## Licencia
 Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
-
-## Contacto
-Para preguntas o soporte, por favor contacta a [juanfdp@gmail.com](mailto:juanfdp@gmail.com).
