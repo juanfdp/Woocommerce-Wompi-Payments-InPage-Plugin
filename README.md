@@ -9,7 +9,7 @@ Este plugin permite integrar la pasarela de pagos Wompi en tu tienda WooCommerce
 * Botón Bancolombia
 * Nequi
 
-## Instalación
+## Instalación 
 1. Descarga el plugin desde el repositorio.
 2. Sube el archivo ZIP a tu instalación de WordPress desde el panel de administración.
 3. Activa el plugin desde la sección de Plugins en WordPress.
