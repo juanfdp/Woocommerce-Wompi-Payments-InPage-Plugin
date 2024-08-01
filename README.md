@@ -1,0 +1,2 @@
+# Woocommerce Wompi Payments Plugin
+ 
