@@ -213,7 +213,7 @@ class WC_Wompi_PSE extends WC_Payment_Gateway{
 
 			$order_id =  intval( str_replace( 'finalizar-compra/thank-you/', '', $wp->request ) );
 
-			$order = new WC_Order( $order_id );	
+			$order = wc_get_order( $order_id );
 
 			if ( $order ) {
 

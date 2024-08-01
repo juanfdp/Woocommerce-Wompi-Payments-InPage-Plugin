@@ -100,9 +100,96 @@ class Woocommerce_Wompi_Payments_Plugin
         require_once ($this->payment_methods_path . 'class-wompi-payment-cash-bancolombia.php');
         
         add_filter( 'woocommerce_payment_gateways', array($this, 'woocommerce_wompi_payments_add_gateway'));
-        // // add_filter( 'woocommerce_billing_fields', array($this, 'custom_woocommerce_billing_fields'));
+        add_filter( 'woocommerce_checkout_fields', array($this, 'custom_woocommerce_checkout_fields'));
+        add_action( 'woocommerce_after_checkout_validation', 'validate_custom_checkout_fields', 10 , 2);
+        add_action( 'woocommerce_checkout_update_user_meta', 'update_user_meta', 10, 2 );
+        add_action( 'woocommerce_checkout_update_order_meta', 'save_custom_fields_in_order', 10);
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_action( 'wp_head', array( $this, 'enqueue_head_scripts' ) );
+        
+    }
+
+    public function custom_woocommerce_checkout_fields($fields) {
+
+        if( !isset( $fields['billing']['billing_tipo_documento'] ) ){
+
+            $fields['billing']['billing_tipo_documento'] = array(
+                'type'          => 'select',
+                'input_class' => array(
+                    'wc-enhanced-select2',
+                ),
+                'required'      => true,
+                'priority'      => 21,
+                'class'      	=> array( 'form-row-first' ),
+                'default'      	=> 'CC',
+                'select2'      	=> true,
+                'placeholder'	=> __( 'Selecciona una opción. ' ),
+                'label'         => __( 'Tipo de documento' ),
+                'options'       => array(
+                                    'CC' 			=> 	'Cedula de ciudadanía',
+                                    'CE' 		  	=> 	'Cedula extrajera',
+                                    'PA' 		  	=> 	'Pasaporte',
+                                    'NIT' 			=> 	'NIT',
+                                    // 'Otro' 			=> 	'Otro',
+                                )
+            );
+
+        }
+
+        if( !isset( $fields['billing']['billing_documento_ident'] ) ){
+
+            $fields['billing']['billing_documento_ident'] = array(
+                'type'          => 'text',
+                'required'      => true,
+                'validate'      => ['billing_documento_ident'],
+                'priority'      => 22,
+                'class'      	=> array( 'form-row-last' ),
+                'label'         => __( 'No. Documento' ),	
+            );
+        }
+    }
+
+    public function validate_custom_checkout_fields( $data, $errors ){
+
+        foreach ( WC()->checkout()->get_checkout_fields() as $fieldset_key => $fieldset ) {
+            
+            foreach ( $fieldset as $key => $field ) {
+
+                if ( ( isset( $field['validate'] ) ) ) {
+
+                    if( $key == 'billing_documento_ident' ) {
+
+						if($data[ 'billing_tipo_documento' ] === 'CC') {
+
+							if ( ! empty( $data[ $key ] ) && ! preg_match( '/^((\d{8})|(\d{7})|(\d{6})|(\d{9})|(\d{10})|(\d{11}))?$/', $data[ $key ] ) ) {
+								$errors->add( 'validation', '<strong>Facturación '.$field['label'].'</strong> has ingresado un valor no valido' );
+							}						
+						}
+
+						if($data[ 'billing_tipo_documento' ] === 'NIT') {
+
+							if ( ! empty( $data[ $key ] ) && ! preg_match( '/^((\d{8})|(\d{10})|(\d{9})|(\d{11}))-\d{1}?$/', trim($data[ $key ] ) ) )
+							{
+								$errors->add( 'validation', '<strong>Facturación '.$field['label'].'</strong> has ingresado un valor no valido, el NIT debe contener el digito de verificación (Ej. 123456789-1)' );
+							}
+						}
+					}
+                }
+            }
+        }
+    }
+
+    
+    public function update_user_meta( $customer_id, $posted ) {
+
+        if (isset($posted['billing_tipo_documento'])) update_user_meta( $customer_id, 'billing_tipo_documento', esc_attr($posted['billing_tipo_documento']));
+        if (isset($posted['billing_documento_ident'])) update_user_meta( $customer_id, 'billing_documento_ident', esc_attr(trim( str_replace(" ", "", $posted['billing_documento_ident'] ))));
+    }
+
+    public function save_custom_fields_in_order( $order_id ){
+        
+        if (isset($_POST['billing_tipo_documento'])) update_post_meta( $order_id, 'billing_tipo_documento', esc_attr($_POST['billing_tipo_documento']));	
+        if (isset($_POST['billing_documento_ident'])) update_post_meta( $order_id, 'billing_documento_ident', esc_attr(   trim( str_replace(" ", "", $_POST['billing_documento_ident'] ))   ));
         
     }
 
