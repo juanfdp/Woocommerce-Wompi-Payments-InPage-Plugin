@@ -2,7 +2,7 @@
 
 class WC_Wompi_Credit_Cards extends WC_Payment_Gateway{
 
-    private static $wompi_payments;
+    private $wompi_payments;
 
 	private $card_token = null;
 	

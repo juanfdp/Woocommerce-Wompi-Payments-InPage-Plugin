@@ -2,7 +2,7 @@
 
 class WC_Wompi_Cash_Bancolombia extends WC_Payment_Gateway{
 
-    private static $wompi_payments;
+    private $wompi_payments;
 	
 	public function __construct(){
 
