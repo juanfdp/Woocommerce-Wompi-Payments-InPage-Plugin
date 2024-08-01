@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: smp
- * Date: 18/02/19
- * Time: 06:52 PM
- */
 
 class Woocommerce_Wompi_Payments_Plugin
 {
@@ -77,6 +71,7 @@ class Woocommerce_Wompi_Payments_Plugin
 
     public function run_woocommerce_wompi_payments()
     {
+
         try{
             if ($this->_bootstrapped){
                 throw new Exception( $this->name . ' solamente puede ser llamado una sola vez!');
@@ -98,7 +93,7 @@ class Woocommerce_Wompi_Payments_Plugin
         require_once ($this->payment_methods_path . 'class-wompi-payment-bancolombia-button.php');
         require_once ($this->payment_methods_path . 'class-wompi-payment-nequi.php');
         require_once ($this->payment_methods_path . 'class-wompi-payment-cash-bancolombia.php');
-        
+
         add_filter( 'woocommerce_payment_gateways', array($this, 'woocommerce_wompi_payments_add_gateway'));
         add_filter( 'woocommerce_checkout_fields', array($this, 'custom_woocommerce_checkout_fields'));
         add_action( 'woocommerce_after_checkout_validation', 'validate_custom_checkout_fields', 10 , 2);
@@ -147,6 +142,8 @@ class Woocommerce_Wompi_Payments_Plugin
                 'label'         => __( 'No. Documento' ),	
             );
         }
+
+        return $fields;
     }
 
     public function validate_custom_checkout_fields( $data, $errors ){
