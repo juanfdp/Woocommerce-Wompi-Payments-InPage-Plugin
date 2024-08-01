@@ -30,4 +30,4 @@ Este plugin permite integrar la pasarela de pagos Wompi en tu tienda WooCommerce
 * Bienvenidas
 
 ## Licencia
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
+Este proyecto está licenciado bajo la Licencia Apache-2.0. Consulta el archivo LICENSE para más detalles.
