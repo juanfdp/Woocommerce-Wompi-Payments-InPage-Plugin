@@ -4,10 +4,10 @@
 Este plugin permite integrar la pasarela de pagos Wompi en tu tienda WooCommerce, facilitando a tus clientes realizar pagos de manera segura y eficiente directamente sin salir de tu pagina web.
 
 ### Metodos de pago soportados
-Tarjetas de Crédito/Débito
-PSE
-Boton Bancolombia
-Nequi
+* Tarjetas de Crédito/Débito
+* PSE
+* Boton Bancolombia
+* Nequi
 
 ## Instalación
 1. Descarga el plugin desde el repositorio.
