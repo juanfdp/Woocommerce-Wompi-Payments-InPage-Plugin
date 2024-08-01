@@ -1,0 +1,49 @@
+li.wc_payment_method.payment_method_woocommerce_wompi_pse > label[for=payment_method_woocommerce_wompi_pse] > img {
+    margin-left: 6px;
+    margin-top: -7px;
+    max-height: 40px;
+}
+
+li.wc_payment_method.payment_method_woocommerce_wompi_credit_cards > label[for=payment_method_woocommerce_wompi_credit_cards] > img {
+    margin-left: 6px;
+    margin-top: -7px;
+    max-height: 40px;
+}
+
+li.wc_payment_method.payment_method_payulatam_co > label[for=payment_method_payulatam_co] > img {
+    margin-left: 6px;
+    margin-top: -7px;
+    max-height: 40px;
+}
+
+li.wc_payment_method.payment_method_woocommerce_wompi_cash_bancolombia > label[for=payment_method_woocommerce_wompi_cash_bancolombia] > img {
+    margin-left: 6px;
+    margin-top: -7px;
+    max-height: 40px;
+}
+
+li.wc_payment_method.payment_method_woocommerce_wompi_bancolombia_button > label[for=payment_method_woocommerce_wompi_bancolombia_button] > img {
+    margin-left: 6px;
+    margin-top: -7px;
+    max-height: 40px;
+}
+li.wc_payment_method.payment_method_woocommerce_wompi_nequi > label[for=payment_method_woocommerce_wompi_nequi] > img {
+    margin-left: 6px;
+    margin-top: -7px;
+    max-height: 40px;
+}
+
+div.card-js > .installments-wrapper > select {
+    padding-left: 10px;
+}
+
+.card-js .installments-wrapper {
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.7), inset 0 1px 0 rgba(255,255,255,.7);
+    -moz-box-shadow: 0 1px 0 rgba(255,255,255,.7),inset 0 1px 0 rgba(255,255,255,.7);
+    -ms-box-shadow: 0 1px 0 rgba(255,255,255,.7),inset 0 1px 0 rgba(255,255,255,.7);
+    -o-box-shadow: 0 1px 0 rgba(255,255,255,.7),inset 0 1px 0 rgba(255,255,255,.7);
+    box-shadow: 0 1px 0 rgba(255,255,255,.7), inset 0 1px 0 rgba(255,255,255,.7);
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
