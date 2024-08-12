@@ -151,8 +151,6 @@ class WC_Wompi_Credit_Cards extends WC_Payment_Gateway{
 				if( $payment_info && isset( $payment_info->status ) ) {
 					if( $payment_info->status == 'APPROVED' ){
 
-						do_action('wc_wompi_on_payment_approved', $args );
-
 						$redirect_url = $this->get_return_url( $order );
 						$redirect_url = add_query_arg( 'wompi_payment', 'approved', $redirect_url );
 						$redirect_url = add_query_arg( 'intent', $intent, $redirect_url );
