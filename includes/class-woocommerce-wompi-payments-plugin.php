@@ -94,6 +94,7 @@ class Woocommerce_Wompi_Payments_Plugin
         require_once ($this->payment_methods_path . 'class-wompi-payment-nequi.php');
         require_once ($this->payment_methods_path . 'class-wompi-payment-cash-bancolombia.php');
 
+        add_filter( 'plugin_action_links_' . plugin_basename( $this->file), array( $this, 'plugin_action_links' ) );
         add_filter( 'woocommerce_payment_gateways', array($this, 'woocommerce_wompi_payments_add_gateway'));
         add_filter( 'woocommerce_checkout_fields', array($this, 'custom_woocommerce_checkout_fields'));
         add_action( 'woocommerce_after_checkout_validation', array($this, 'validate_custom_checkout_fields'), 10 , 2);
@@ -102,6 +103,12 @@ class Woocommerce_Wompi_Payments_Plugin
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_action( 'wp_head', array( $this, 'enqueue_head_scripts' ) );
         
+    }
+
+    public function plugin_action_links( $links ) {
+        $plugin_links = array();
+        $plugin_links[] = '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=woocommerce_wompi_pse') . '">' . 'Ajustes' . '</a>';
+        return array_merge( $plugin_links, $links );
     }
 
     public function custom_woocommerce_checkout_fields($fields) {
